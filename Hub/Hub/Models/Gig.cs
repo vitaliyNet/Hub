@@ -7,8 +7,10 @@ namespace Hub.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public ApplicationUser Artist { get; set; } // who is performing
+
+        [Required]
+        public string ArtistId { get; set; }
 
         public DateTime DateTime { get; set; } //when gig is gonna happend
 
@@ -16,7 +18,9 @@ namespace Hub.Models
         [StringLength(255)]
         public string Venue { get; set; } // where is gonna happend
 
-        [Required]
         public Genre Gengre { get; set; } // what genre is it
+
+        [Required]
+        public byte GenreId { get; set; }
     }
 }
