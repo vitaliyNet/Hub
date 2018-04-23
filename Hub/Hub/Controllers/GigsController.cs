@@ -30,12 +30,18 @@ namespace Hub.Controllers
         [HttpPost]
         public ActionResult Create(GigFormViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                model.Genres = _context.Genres.ToList();
+                return View("Create", model);
+            }
+            
             //var artist = _context.Users.Single(u => u.Id == User.Identity.GetUserId());
-           // var genre = _context.Genres.Single(g => g.Id == model.Genre);
+            // var genre = _context.Genres.Single(g => g.Id == model.Genre);
             var gig = new Gig
             {
                 ArtistId = User.Identity.GetUserId(),
-                DateTime = model.DateTime,
+                DateTime = model.GetDateTime(),
                 GenreId = model.Genre,
                 Venue = model.Venue
                 
